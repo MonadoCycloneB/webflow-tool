@@ -166,7 +166,7 @@ let ClassInput = () => {
 	dataID("selector-widget").find('input').click();
 }
 
-let StyleOption = (option, value) => {
+let STYLE = (option, value) => {
 	RightTab(RIGHT_TABS.Style);
 
 	setTimeout(() => {
