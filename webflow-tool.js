@@ -112,7 +112,22 @@ const STYLE_OPTIONS = {
 	},
 	"Center-Horizontally":{
 		PREFUNC: () => { $('[data-icon="CenterHorizontally"]').parent().click(); }
-	}
+	},
+    "Pos-Absolute": {
+        SELECTOR : dataSel('PositionBody') +' div:nth-child(3) > div[aria-label]',
+        OPTIONS : {
+            "Top Left": 0,
+            "Top Right": 1,
+            "Bottom Left": 2,
+            "Bottom Right": 3,
+            "Left": 4,
+            "Right": 5,
+            "Bottom": 6,
+            "Top": 7,
+            "Full": 8
+        }
+
+    }
 };
 
 // Data ID Getter
