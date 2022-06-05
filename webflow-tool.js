@@ -1,5 +1,13 @@
 console.log("hello");
 
+// Data ID Getter
+let dataID = id => {
+	return $(`[${DATA_ID}="${id}"]`);
+};
+let dataSel = id => {
+	return `[${DATA_ID}="${id}"]`;
+}
+
 // Consts
 const DATA_ID = "data-automation-id";
 const LEFT_PANES = {
@@ -129,14 +137,6 @@ const STYLE_OPTIONS = {
 
     }
 };
-
-// Data ID Getter
-let dataID = id => {
-	return $(`[${DATA_ID}="${id}"]`);
-};
-let dataSel = id => {
-	return `[${DATA_ID}="${id}"]`;
-}
 
 // Declare Getters
 let bem = () => $(".bem-Pane");
