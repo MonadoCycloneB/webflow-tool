@@ -1,0 +1,3 @@
+tool = document.createElement('script');
+tool.src = 'https://monadocycloneb.github.io/webflow-tool/webflow-tool.js'
+document.head.appendChild(tool);
