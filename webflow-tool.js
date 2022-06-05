@@ -14,6 +14,12 @@ const LEFT_PANES = {
 	Assets: { bem_id: "Assets", btn_id: "left-sidebar-assets-button" },
 	Settings: { bem_id: "Settings", btn_id: "left-sidebar-settings-button" },
 };
+const RIGHT_TABS = {
+	Style : "style-tab",
+	Settings : "settings-tab",
+	AllStyles : "all-styles-tab",
+	Interactions : "interactions-tab"
+}
 const ELEMENTS =  {
 	Section : 'Section',
 	Container : 'Container',
@@ -92,4 +98,9 @@ let AddElement = (element) => {
 	LeftPane("Add Element");
 	// Wait 50ms
 	setTimeout(() => { dataID("add-tab-" + element).click(); }, 50);
+}
+
+// Right Tabs
+let RightTab = key => {
+	$('#right-sidebar .' + key).click();
 }
