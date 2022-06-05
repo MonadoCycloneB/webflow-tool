@@ -85,13 +85,43 @@ const STYLE_OPTIONS = {
 			"Fixed": 3,
 			"Sticky": 4
 		}
+	},
+	"Font-Weight": {
+		PREFUNC: () => { $('$sp-fontWeight').click(); },
+		SELECTOR: '[role="option"]',
+		OPTIONS: {
+			100: 0,
+			200: 1,
+			300: 2,
+			400: 3,
+			500: 4,
+			600: 5,
+			700: 6,
+			800: 7,
+			900: 8
+		}
+	},
+	"Text-Align": {
+		SELECTOR: 'div[data-automation-id="SegmentedControl"][aria-labelledby="sp-align"] > div',
+		OPTIONS: {
+			"Left": 0,
+			"Center": 1,
+			"Right": 2,
+			"Justify": 3
+		}
+	},
+	"Center-Horizontally":{
+		PREFUNC: () => { $('[data-icon="CenterHorizontally"]').parent().click(); }
 	}
-}
+};
 
 // Data ID Getter
 let dataID = id => {
 	return $(`[${DATA_ID}="${id}"]`);
 };
+let dataSel = id => {
+	return `[${DATA_ID}="${id}"]`;
+}
 
 // Declare Getters
 let bem = () => $(".bem-Pane");
@@ -149,4 +179,22 @@ let StyleOption = (option, value) => {
 		$(selector)[index].click();
 	}
 		, 50);
+}
+
+let TextColor = () => {
+	RightTab(RIGHT_TABS.Style);
+
+	setTimeout(() => {
+		dataID('Typography').find(dataSel('swatch')).click();
+		dataID('hex-color-input').select();
+	}, 50);
+}
+
+let BGColor = () => {
+	RightTab(RIGHT_TABS.Style);
+
+	setTimeout(() => {
+		dataID('Typography').find(dataSel('swatch')).click();
+		dataID('hex-color-input').select();
+	}, 50);
 }
