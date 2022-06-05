@@ -15,53 +15,77 @@ const LEFT_PANES = {
 	Settings: { bem_id: "Settings", btn_id: "left-sidebar-settings-button" },
 };
 const RIGHT_TABS = {
-	Style : "style-tab",
-	Settings : "settings-tab",
-	AllStyles : "all-styles-tab",
-	Interactions : "interactions-tab"
+	Style: "style-tab",
+	Settings: "settings-tab",
+	AllStyles: "all-styles-tab",
+	Interactions: "interactions-tab"
 }
-const ELEMENTS =  {
-	Section : 'Section',
-	Container : 'Container',
-	Grid : 'Grid',
-	Row : 'Row',
-	DivBlock : 'DivBlock',
-	List : 'List',
-	ListItem : 'ListItem',
-	LinkBlock : 'LinkBlock',
-	Button : 'Button',
-	Heading : 'Heading',
-	Paragraph : 'Paragraph',
-	TextLink : 'TextLink',
-	TextBlock : 'TextBlock',
-	Blockquote : 'Blockquote',
-	RichText : 'RichText',
-	DynamoWrapper : 'DynamoWrapper',
-	Image : 'Image',
-	Video : 'Video',
-	YouTubeVideo : 'YouTubeVideo',
-	Animation : 'Animation',
-	FormForm : 'FormForm',
-	FormBlockLabel : 'FormBlockLabel',
-	FormTextInput : 'FormTextInput',
-	FormFileUploadWrapper : 'FormFileUploadWrapper',
-	FormTextarea : 'FormTextarea',
-	FormCheckboxInput : 'FormCheckboxInput',
-	FormRadioInput : 'FormRadioInput',
-	FormSelect : 'FormSelect',
-	FormReCaptcha : 'FormReCaptcha',
-	FormButton : 'FormButton',
-	BackgroundVideoWrapper : 'BackgroundVideoWrapper',
-	DropdownWrapper : 'DropdownWrapper',
-	HtmlEmbed : 'HtmlEmbed',
-	LightboxWrapper : 'LightboxWrapper',
-	NavbarWrapper : 'NavbarWrapper',
-	SearchForm : 'SearchForm',
-	SliderWrapper : 'SliderWrapper',
-	TabsWrapper : 'TabsWrapper',
-	MapWidget : 'MapWidget',
-	Facebook : 'Facebook',
-	Twitter : 'Twitter'
+const ELEMENTS = {
+	Section: 'Section',
+	Container: 'Container',
+	Grid: 'Grid',
+	Row: 'Row',
+	DivBlock: 'DivBlock',
+	List: 'List',
+	ListItem: 'ListItem',
+	LinkBlock: 'LinkBlock',
+	Button: 'Button',
+	Heading: 'Heading',
+	Paragraph: 'Paragraph',
+	TextLink: 'TextLink',
+	TextBlock: 'TextBlock',
+	Blockquote: 'Blockquote',
+	RichText: 'RichText',
+	DynamoWrapper: 'DynamoWrapper',
+	Image: 'Image',
+	Video: 'Video',
+	YouTubeVideo: 'YouTubeVideo',
+	Animation: 'Animation',
+	FormForm: 'FormForm',
+	FormBlockLabel: 'FormBlockLabel',
+	FormTextInput: 'FormTextInput',
+	FormFileUploadWrapper: 'FormFileUploadWrapper',
+	FormTextarea: 'FormTextarea',
+	FormCheckboxInput: 'FormCheckboxInput',
+	FormRadioInput: 'FormRadioInput',
+	FormSelect: 'FormSelect',
+	FormReCaptcha: 'FormReCaptcha',
+	FormButton: 'FormButton',
+	BackgroundVideoWrapper: 'BackgroundVideoWrapper',
+	DropdownWrapper: 'DropdownWrapper',
+	HtmlEmbed: 'HtmlEmbed',
+	LightboxWrapper: 'LightboxWrapper',
+	NavbarWrapper: 'NavbarWrapper',
+	SearchForm: 'SearchForm',
+	SliderWrapper: 'SliderWrapper',
+	TabsWrapper: 'TabsWrapper',
+	MapWidget: 'MapWidget',
+	Facebook: 'Facebook',
+	Twitter: 'Twitter'
+}
+const STYLE_OPTIONS = {
+	"Display": {
+		SELECTOR: '#layout-display-options div[data-automation-id="SegmentedControl"] > div',
+		OPTIONS: {
+			"Block": 0,
+			"Flex": 1,
+			"Grid": 2,
+			"Inline-Block": 3,
+			"Inline": 4,
+			"None": 5
+		}
+	},
+	"Position": {
+		PREFUNC: () => { $('#sp-position').click(); },
+		SELECTOR: '[role="option"]',
+		OPTIONS: {
+			"Static": 0,
+			"Relative": 1,
+			"Absolute": 2,
+			"Fixed": 3,
+			"Sticky": 4
+		}
+	}
 }
 
 // Data ID Getter
@@ -96,6 +120,7 @@ let LeftPane = key => {
 
 let AddElement = (element) => {
 	LeftPane("Add Element");
+
 	// Wait 50ms
 	setTimeout(() => { dataID("add-tab-" + element).click(); }, 50);
 }
@@ -103,4 +128,25 @@ let AddElement = (element) => {
 // Right Tabs
 let RightTab = key => {
 	$('#right-sidebar .' + key).click();
+}
+
+// Style Tab
+let ClassInput = () => {
+	RightTab(RIGHT_TABS.Style);
+	dataID("selector-widget").find('input').click();
+}
+
+let StyleOption = (option, value) => {
+	RightTab(RIGHT_TABS.Style);
+
+	setTimeout(() => {
+
+		if (STYLE_OPTIONS[option]["PREFUNC"]) STYLE_OPTIONS[option]["PREFUNC"]();
+
+		let selector = STYLE_OPTIONS[option].SELECTOR;
+		let index = STYLE_OPTIONS[option].OPTIONS[value];
+
+		$(selector)[index].click();
+	}
+		, 50);
 }
