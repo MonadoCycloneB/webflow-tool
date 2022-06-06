@@ -72,6 +72,7 @@ const ELEMENTS = {
 	Twitter: 'Twitter'
 }
 const OPTIONS = {
+	// Style > Layout
 	"Display": {
 		TAB: RIGHT_TABS.Style,
 		SELECTOR: '#layout-display-options div[data-automation-id="SegmentedControl"] > div',
@@ -84,63 +85,20 @@ const OPTIONS = {
 			"None": 5
 		}
 	},
-	"Position": {
-		TAB: RIGHT_TABS.Style,
-		PREFUNC: () => { $('#sp-position').click(); },
-		SELECTOR: '[role="option"]',
-		OPTIONS: {
-			"Static": 0,
-			"Relative": 1,
-			"Absolute": 2,
-			"Fixed": 3,
-			"Sticky": 4
-		}
-	},
-	"Font-Weight": {
-		TAB: RIGHT_TABS.Style,
-		PREFUNC: () => { $('$sp-fontWeight').click(); },
-		SELECTOR: '[role="option"]',
-		OPTIONS: {
-			100: 0,
-			200: 1,
-			300: 2,
-			400: 3,
-			500: 4,
-			600: 5,
-			700: 6,
-			800: 7,
-			900: 8
-		}
-	},
-	"Text-Align": {
-		TAB: RIGHT_TABS.Style,
-		SELECTOR: 'div[data-automation-id="SegmentedControl"][aria-labelledby="sp-align"] > div',
-		OPTIONS: {
-			"Left": 0,
-			"Center": 1,
-			"Right": 2,
-			"Justify": 3
-		}
-	},
+
+	// Style > Spacing
 	"Center-Horizontally": {
 		TAB: RIGHT_TABS.Style,
 		PREFUNC: () => { $('[data-icon="CenterHorizontally"]').parent().click(); }
 	},
-	"Pos-Absolute": {
-		TAB: RIGHT_TABS.Style,
-		SELECTOR: dataSel('PositionBody') + ' div:nth-child(3) > div[aria-label]',
-		OPTIONS: {
-			"Top Left": 0,
-			"Top Right": 1,
-			"Bottom Left": 2,
-			"Bottom Right": 3,
-			"Left": 4,
-			"Right": 5,
-			"Bottom": 6,
-			"Top": 7,
-			"Full": 8
-		}
-	},
+
+	// Style > Size
+	"Width": { /* TODO */ },
+	"Min-Width": { /* TODO */ },
+	"Max-Width": { /* TODO */ },
+	"Height": { /* TODO */ },
+	"Min-Height": { /* TODO */ },
+	"Max-Height": { /* TODO */ },
 	"Width--Unit": {
 		TAB: RIGHT_TABS.Style,
 		PREFUNC: () => { dataID("Size").find('#width-UnitSelect').click(); },
@@ -231,6 +189,106 @@ const OPTIONS = {
 			"None": 7
 		}
 	},
+	"Overflow": {
+		// TODO
+		OPTIONS: {
+			"Visible": 0,
+			"Hidden": 1,
+			"Scroll": 2,
+			"Auto": 3
+		}
+	},
+
+	// Style > Position
+	"Position": {
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { $('#sp-position').click(); },
+		SELECTOR: '[role="option"]',
+		OPTIONS: {
+			"Static": 0,
+			"Relative": 1,
+			"Absolute": 2,
+			"Fixed": 3,
+			"Sticky": 4
+		}
+	},
+	"Pos-Absolute": {
+		TAB: RIGHT_TABS.Style,
+		SELECTOR: dataSel('PositionBody') + ' div:nth-child(3) > div[aria-label]',
+		OPTIONS: {
+			"Top Left": 0,
+			"Top Right": 1,
+			"Bottom Left": 2,
+			"Bottom Right": 3,
+			"Left": 4,
+			"Right": 5,
+			"Bottom": 6,
+			"Top": 7,
+			"Full": 8
+		}
+	},
+	"Z-Index": { /* TODO */ },
+
+	// Style > Typography
+	"Font-Family": { /* TODO */ },
+	"Font-Weight": {
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { $('#sp-fontWeight').click(); },
+		SELECTOR: '[role="option"]',
+		OPTIONS: {
+			100: 0,
+			200: 1,
+			300: 2,
+			400: 3,
+			500: 4,
+			600: 5,
+			700: 6,
+			800: 7,
+			900: 8
+		}
+	},
+	"Font-Size": { /* TODO */ },
+	"Font-Size--Unit": { /* TODO */ },
+	"Line-Height": { /* TODO */ },
+	"Line-Height--Unit": { /* TODO */ },
+
+	"Text-Align": {
+		TAB: RIGHT_TABS.Style,
+		SELECTOR: 'div[data-automation-id="SegmentedControl"][aria-labelledby="sp-align"] > div',
+		OPTIONS: {
+			"Left": 0,
+			"Center": 1,
+			"Right": 2,
+			"Justify": 3
+		}
+	},
+
+	"Italicize": {
+		/* TODO */
+		OPTIONS: {
+			"Regular": 0,
+			"Italic": 1
+		}
+	},
+	"Decoration": {
+		/* TODO */
+		OPTIONS: {
+			"None": 0,
+			"Striketrough": 1,
+			"Underline": 2,
+			"Overline": 3
+		}
+	},
+
+	// Style > Border
+	"Border-Radius": { /* TODO */ },
+	"Border-Radius--Unit": { /* TODO */ },
+
+	"Border-Width": { /* TODO */ },
+	"Border-Width--Unit": { /* TODO */ },
+
+	"Border-Style": { /* TODO */ },
+
 };
 
 // Declare Getters
@@ -305,6 +363,15 @@ let BGColor = () => {
 
 	setTimeout(() => {
 		dataID('Typography').find(dataSel('swatch')).click();
+		dataID('hex-color-input').select();
+	}, 50);
+}
+
+let BorderColor = () => {
+	RightTab(RIGHT_TABS.Style);
+
+	setTimeout(() => {
+		dataID('Borders').find(dataSel('swatch')).click();
 		dataID('hex-color-input').select();
 	}, 50);
 }
