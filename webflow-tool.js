@@ -122,28 +122,28 @@ const OPTIONS = {
 			"Justify": 3
 		}
 	},
-	"Center-Horizontally":{
+	"Center-Horizontally": {
 		TAB: RIGHT_TABS.Style,
 		PREFUNC: () => { $('[data-icon="CenterHorizontally"]').parent().click(); }
 	},
-    "Pos-Absolute": {
+	"Pos-Absolute": {
 		TAB: RIGHT_TABS.Style,
-        SELECTOR : dataSel('PositionBody') +' div:nth-child(3) > div[aria-label]',
-        OPTIONS : {
-            "Top Left": 0,
-            "Top Right": 1,
-            "Bottom Left": 2,
-            "Bottom Right": 3,
-            "Left": 4,
-            "Right": 5,
-            "Bottom": 6,
-            "Top": 7,
-            "Full": 8
-        }
-    },
-	"Width--Unit":{
+		SELECTOR: dataSel('PositionBody') + ' div:nth-child(3) > div[aria-label]',
+		OPTIONS: {
+			"Top Left": 0,
+			"Top Right": 1,
+			"Bottom Left": 2,
+			"Bottom Right": 3,
+			"Left": 4,
+			"Right": 5,
+			"Bottom": 6,
+			"Top": 7,
+			"Full": 8
+		}
+	},
+	"Width--Unit": {
 		TAB: RIGHT_TABS.Style,
-		PREFUNC: () => { dataID("Size").find('#width-UnitySelect').click(); },
+		PREFUNC: () => { dataID("Size").find('#width-UnitSelect').click(); },
 		SELECTOR: '[aria-labelledby="width-UnitSelect"] [role="option"]',
 		OPTIONS: {
 			"PX": 0,
@@ -155,7 +155,82 @@ const OPTIONS = {
 			"VH": 6,
 			"Auto": 7
 		}
-	}
+	},
+	"MinWidth--Unit": {
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { dataID("Size").find('#minWidth-UnitSelect').click(); },
+		SELECTOR: '[aria-labelledby="minWidth-UnitSelect"] [role="option"]',
+		OPTIONS: {
+			"PX": 0,
+			"%": 1,
+			"EM": 2,
+			"REM": 3,
+			"CH": 4,
+			"VW": 5,
+			"VH": 6,
+			"Auto": 7
+		}
+	},
+	"MaxWidth--Unit": {
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { dataID("Size").find('#maxWidth-UnitSelect').click(); },
+		SELECTOR: '[aria-labelledby="maxWidth-UnitSelect"] [role="option"]',
+		OPTIONS: {
+			"PX": 0,
+			"%": 1,
+			"EM": 2,
+			"REM": 3,
+			"CH": 4,
+			"VW": 5,
+			"VH": 6,
+			"None": 7
+		}
+	},
+	"Height--Unit": {
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { dataID("Size").find('#height-UnitSelect').click(); },
+		SELECTOR: '[aria-labelledby="height-UnitSelect"] [role="option"]',
+		OPTIONS: {
+			"PX": 0,
+			"%": 1,
+			"EM": 2,
+			"REM": 3,
+			"CH": 4,
+			"VW": 5,
+			"VH": 6,
+			"Auto": 7
+		}
+	},
+	"MinHeight--Unit": {
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { dataID("Size").find('#minHeight-UnitSelect').click(); },
+		SELECTOR: '[aria-labelledby="minHeight-UnitSelect"] [role="option"]',
+		OPTIONS: {
+			"PX": 0,
+			"%": 1,
+			"EM": 2,
+			"REM": 3,
+			"CH": 4,
+			"VW": 5,
+			"VH": 6,
+			"Auto": 7
+		}
+	},
+	"MaxHeight--Unit": {
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { dataID("Size").find('#maxHeight-UnitSelect').click(); },
+		SELECTOR: '[aria-labelledby="maxHeight-UnitSelect"] [role="option"]',
+		OPTIONS: {
+			"PX": 0,
+			"%": 1,
+			"EM": 2,
+			"REM": 3,
+			"CH": 4,
+			"VW": 5,
+			"VH": 6,
+			"None": 7
+		}
+	},
 };
 
 // Declare Getters
