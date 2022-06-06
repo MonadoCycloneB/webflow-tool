@@ -71,8 +71,9 @@ const ELEMENTS = {
 	Facebook: 'Facebook',
 	Twitter: 'Twitter'
 }
-const STYLE_OPTIONS = {
+const OPTIONS = {
 	"Display": {
+		TAB: RIGHT_TABS.Style,
 		SELECTOR: '#layout-display-options div[data-automation-id="SegmentedControl"] > div',
 		OPTIONS: {
 			"Block": 0,
@@ -84,6 +85,7 @@ const STYLE_OPTIONS = {
 		}
 	},
 	"Position": {
+		TAB: RIGHT_TABS.Style,
 		PREFUNC: () => { $('#sp-position').click(); },
 		SELECTOR: '[role="option"]',
 		OPTIONS: {
@@ -95,6 +97,7 @@ const STYLE_OPTIONS = {
 		}
 	},
 	"Font-Weight": {
+		TAB: RIGHT_TABS.Style,
 		PREFUNC: () => { $('$sp-fontWeight').click(); },
 		SELECTOR: '[role="option"]',
 		OPTIONS: {
@@ -110,6 +113,7 @@ const STYLE_OPTIONS = {
 		}
 	},
 	"Text-Align": {
+		TAB: RIGHT_TABS.Style,
 		SELECTOR: 'div[data-automation-id="SegmentedControl"][aria-labelledby="sp-align"] > div',
 		OPTIONS: {
 			"Left": 0,
@@ -119,9 +123,11 @@ const STYLE_OPTIONS = {
 		}
 	},
 	"Center-Horizontally":{
+		TAB: RIGHT_TABS.Style,
 		PREFUNC: () => { $('[data-icon="CenterHorizontally"]').parent().click(); }
 	},
     "Pos-Absolute": {
+		TAB: RIGHT_TABS.Style,
         SELECTOR : dataSel('PositionBody') +' div:nth-child(3) > div[aria-label]',
         OPTIONS : {
             "Top Left": 0,
@@ -134,8 +140,22 @@ const STYLE_OPTIONS = {
             "Top": 7,
             "Full": 8
         }
-
-    }
+    },
+	"Width--Unit":{
+		TAB: RIGHT_TABS.Style,
+		PREFUNC: () => { dataID("Size").find('#width-UnitySelect').click(); },
+		SELECTOR: '[aria-labelledby="width-UnitSelect"] [role="option"]',
+		OPTIONS: {
+			"PX": 0,
+			"%": 1,
+			"EM": 2,
+			"REM": 3,
+			"CH": 4,
+			"VW": 5,
+			"VH": 6,
+			"Auto": 7
+		}
+	}
 };
 
 // Declare Getters
@@ -181,15 +201,15 @@ let ClassInput = () => {
 	dataID("selector-widget").find('input').click();
 }
 
-let STYLE = (option, value) => {
-	RightTab(RIGHT_TABS.Style);
+let _ = (option, value = "") => {
+	RightTab(OPTIONS[option]["TAB"]);
 
 	setTimeout(() => {
 
-		if (STYLE_OPTIONS[option]["PREFUNC"]) STYLE_OPTIONS[option]["PREFUNC"]();
+		if (OPTIONS[option]["PREFUNC"]) OPTIONS[option]["PREFUNC"]();
 
-		let selector = STYLE_OPTIONS[option].SELECTOR;
-		let index = STYLE_OPTIONS[option].OPTIONS[value];
+		let selector = OPTIONS[option].SELECTOR;
+		let index = OPTIONS[option].OPTIONS[value];
 
 		$(selector)[index].click();
 	}
